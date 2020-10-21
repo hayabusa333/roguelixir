@@ -1,10 +1,10 @@
 defmodule Roguelixir.DungeonMap do
   alias Roguelixir.DungeonMap
 
-  @enforce_keys [:row, :col]
-  defstruct [:row, :col]
+  @enforce_keys [:row, :col, :dungeon]
+  defstruct [:row, :col, :dungeon]
 
-  def new() do
-    {:ok, %DungeonMap{row: 100, col: 100}}
+  def new(dungeon) do
+    {:ok, %DungeonMap{row: 100, col: 100, dungeon: dungeon}}
   end
 end
