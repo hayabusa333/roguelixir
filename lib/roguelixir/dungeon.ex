@@ -6,4 +6,8 @@ defmodule Roguelixir.Dungeon do
   def new(name, stratum) do
     {:ok, %Dungeon{name: name, stratum: stratum}}
   end
+
+  def ets_set(dungeon) do
+    :ets.insert(:roguelixir_dungeon, {dungeon})
+  end
 end
