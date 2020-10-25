@@ -4,10 +4,13 @@ defmodule Roguelixir.Dungeon do
   defstruct [:name, :stratum, :text]
 
   def new(name, stratum) do
-    {:ok, %Dungeon{name: name, stratum: stratum}}
+    dungeon = %Dungeon{name: name, stratum: stratum}
+    :ets.new(:roguelixir_dungeon, [:set, :protected, :named_table])
+    :ets.insert(:roguelixir_dungeon, {:dungeon, dungeon})
+    {:ok}
   end
 
-  def ets_set(dungeon) do
-    :ets.insert(:roguelixir_dungeon, {dungeon})
+  def self do
+    :ets.lookup(:roguelixir_dungeon, :dungeon)[:dungeon]
   end
 end
