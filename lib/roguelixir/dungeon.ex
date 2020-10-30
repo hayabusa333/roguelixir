@@ -5,7 +5,13 @@ defmodule Roguelixir.Dungeon do
 
   def new() do
     yml_data = load_yaml()
-    dungeon = %Dungeon{name: yml_data["dungeon1"]["name"], stratum: yml_data["dungeon1"]["stratum"], row: 100, col: 100}
+    dungeon = %Dungeon{
+       name: yml_data["dungeon1"]["name"],
+       stratum: yml_data["dungeon1"]["stratum"],
+       row: yml_data["dungeon1"]["row"],
+       col: yml_data["dungeon1"]["col"],
+       text: yml_data["dungeon1"]["text"]
+    }
     :ets.new(:roguelixir_dungeon, [:set, :protected, :named_table])
     :ets.insert(:roguelixir_dungeon, {:dungeon, dungeon})
     {:ok}
